@@ -1,4 +1,4 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=preload as=font href=https://aeg-dev.github.io/AegiSite/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=https://aeg-dev.github.io/AegiSite/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><link rel=stylesheet href=https://aeg-dev.github.io/AegiSite/main.28da7785947fa33ddcae6925e18b0a958823da68373369ac541f243d23e67f9ef937586e39bd98fe8b413447a20c7dd3945aba78c6be93ba1398ec62d58d480c.css integrity="sha512-KNp3hZR/oz3crmkl4YsKlYgj2mg3M2msVB8kPSPmf575N1huOb2Y/otBNEeiDH3TlFq6eMa+k7oTmOxi1Y1IDA==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>- Aegisub</title><meta name=description content="Aegisub is a free, cross-platform open source tool for creating and modifying subtitles. Aegisub makes it quick and easy to time subtitles to audio, and features many powerful tools for styling them, including a built-in real-time video preview."><link rel=canonical href=https://aeg-dev.github.io/AegiSite/docs/3.2/automation/included_macros/><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="/doks.png"><meta name=twitter:title content><meta name=twitter:description content="Aegisub includes several macros. Here&rsquo;s a line-up of them.
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=preload as=font href=https://aeg-dev.github.io/AegiSite/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=https://aeg-dev.github.io/AegiSite/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><link rel=stylesheet href=https://aeg-dev.github.io/AegiSite/main.fc46d0020a9269a024ea53df510d38f766cc24019f517eb6b1e7ab3103c45ca81be58a73611a71f5045aa47fa64258ba9fdcb0f602f0a59e72e73ae8c1981886.css integrity="sha512-/EbQAgqSaaAk6lPfUQ0492bMJAGfUX62seerMQPEXKgb5YpzYRpx9QRapH+mQli6n9yw9gLwpZ5y5zrowZgYhg==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>- Aegisub</title><meta name=description content="Aegisub is a free, cross-platform open source tool for creating and modifying subtitles. Aegisub makes it quick and easy to time subtitles to audio, and features many powerful tools for styling them, including a built-in real-time video preview."><link rel=canonical href=https://aeg-dev.github.io/AegiSite/docs/3.2/automation/included_macros/><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="/doks.png"><meta name=twitter:title content><meta name=twitter:description content="Aegisub includes several macros. Here&rsquo;s a line-up of them.
 Apply karaoke template This is the macro incantation of Karaoke Templater. See the page on Karaoke_Templater for how to use this.
 This macro is only available when there is at least one template line in the subtitle file.
 Make full-width Converts all ASCII characters to Japanese &ldquo;full-width&rdquo; variations of them.
@@ -12,23 +12,20 @@ This can be useful if you need to typeset a sign translation vertically, such th
 <a href=https://aeg-dev.github.io/AegiSite/docs/3.2/automation/karaoke_templater/>Karaoke_Templater</a> for how to use this.</p><p>This macro is only available when there is at least one template line in the
 subtitle file.</p><h2 id=make-full-width>Make full-width<a href=#make-full-width class=anchor aria-hidden=true>#</a></h2><p>Converts all ASCII characters to Japanese &ldquo;full-width&rdquo; variations of them.</p><p>This can be useful if you need to typeset a sign translation vertically,
 such that the letters are &ldquo;stacked&rdquo;.</p><p>This macro modifies all lines that are currently selected in the subtitles
-grid.</p><p>{::template name=&ldquo;examplebox&rdquo;}
-Here&rsquo;s a typeset sign:</p><pre><code>{\fn@DFPGothic-EB\fs26\shad0\fe128\bord3\3c&amp;H25485A&amp;\c&amp;HDEEBF1&amp;\pos(456,184)\frz-90}Sign text
+grid.</p><div class=card><strong class=card-header>Example</strong><div class=card-body><p>Here&rsquo;s a typeset sign:</p><pre><code>{\fn@DFPGothic-EB\fs26\shad0\fe128\bord3\3c&amp;H25485A&amp;\c&amp;HDEEBF1&amp;\pos(456,184)\frz-90}Sign text
 </code></pre><p>Notice that it uses an &ldquo;@-font&rdquo;, a variation that exists of every CJK font
 that has &ldquo;fullwidth&rdquo; characters rotated 90 degrees from the baseline.
 Fullwidth characters include not just these fullwidth variations of the
 Latin alphabet but also Japanese kana and kanji, hanzi, hanja and various
 punctuation characters.</p><p>Now after running this macro on the line:</p><pre><code>{\fn@DFPGothic-EB\fs26\shad0\fe128\bord3\3c&amp;H25485A&amp;\c&amp;HDEEBF1&amp;\pos(456,184)\frz-90}Ｓｉｇｎ ｔｅｘｔ
-</code></pre><p>This is what it looks before and after running the macro:</p><p><img src=https://aeg-dev.github.io/AegiSite/img/3.2/StackedSign1.png alt=StackedSign1> <img src=https://aeg-dev.github.io/AegiSite/img/3.2/StackedSign2.png alt=StackedSign2>
-{:/}</p><h2 id=automatic-karaoke-lead-in>Automatic karaoke lead-in<a href=#automatic-karaoke-lead-in class=anchor aria-hidden=true>#</a></h2><p>Automatically join several karaoke-timed lines up timing-wise and add
+</code></pre><p>This is what it looks before and after running the macro:</p><p><img src=https://aeg-dev.github.io/AegiSite/img/3.2/StackedSign1.png alt=StackedSign1> <img src=https://aeg-dev.github.io/AegiSite/img/3.2/StackedSign2.png alt=StackedSign2></p></div></div><h2 id=automatic-karaoke-lead-in>Automatic karaoke lead-in<a href=#automatic-karaoke-lead-in class=anchor aria-hidden=true>#</a></h2><p>Automatically join several karaoke-timed lines up timing-wise and add
 appropriate <code>\k</code> tags in front of them.</p><p>This macro is designed to help creating karaoke effects, most importantly
 creating transitions and lead-ins for lines. It&rsquo;s well suited for using when
 the karaoke is timed but before applying effects, such as karaoke templates.</p><p>This macro requires at least two lines to be selected and it only works
 sensibly if the start-time of each selected line is larger than the
 start-time of the selected line that comes before it. It changes the timing
 of the selected lines and adds <code>\k</code> tags at the start of them except the
-first.</p><p>{::template name=&ldquo;examplebox&rdquo;}
-Here&rsquo;s two lines of &ldquo;tightly&rdquo; timed karaoke:</p><pre><code>Dialogue: 0,0:00:44.46,0:00:46.28,Default,,0000,0000,0000,,{\k15}Ne{\k14}ver {\k14}gon{\k13}na {\k37}give {\k40}you {\k49}up
+first.</p><div class=card><strong class=card-header>Example</strong><div class=card-body><p>Here&rsquo;s two lines of &ldquo;tightly&rdquo; timed karaoke:</p><pre><code>Dialogue: 0,0:00:44.46,0:00:46.28,Default,,0000,0000,0000,,{\k15}Ne{\k14}ver {\k14}gon{\k13}na {\k37}give {\k40}you {\k49}up
 Dialogue: 0,0:00:46.57,0:00:48.56,Default,,0000,0000,0000,,{\k13}Ne{\k13}ver {\k13}gon{\k13}na {\k36}let {\k46}you {\k65}down
 </code></pre><p>Both lines start exactly when the first word starts being sung, and they end
 exactly when the last word ends.</p><p>Now if the <em>Automatic karaoke lead-in</em> macro is run on these two lines, they
@@ -42,8 +39,7 @@ effects.</p><p>The macro also shows this message:</p><pre><code>Smallest inter-l
 </code></pre><p>This simply says that the smallest duration between two lines it found, was
 290 milliseconds, or 0.29 seconds, so that&rsquo;s as much time you have to make
 fade-in, fade-out and other transition effects, if you want every
-syllable-highlight to be fully visible.
-{:/}</p><h2 id=clean-tags>Clean tags<a href=#clean-tags class=anchor aria-hidden=true>#</a></h2><p>This macro does various cleaning up on the override tags in all selected
+syllable-highlight to be fully visible.</p></div></div><h2 id=clean-tags>Clean tags<a href=#clean-tags class=anchor aria-hidden=true>#</a></h2><p>This macro does various cleaning up on the override tags in all selected
 lines.</p><ul><li>Combines adjacent override blocks (i.e { &mldr; }) except if both of the
 block contains \k tags each then they will be left as is</li><li>Push any \k tags in override blocks to the front (e.g. from {\frz90\k40}
 to {\k40\frz90}). Special care will be taken for multiple \k tags within
@@ -56,12 +52,10 @@ the two comes first and remove others. The same are done for \fad and
 \pos(200,200))</li></ul><p>This macro is also available as an export filter.</p><p>The main intended function of this macro is to make
 <a href=https://aeg-dev.github.io/AegiSite/docs/3.2/automation/lua/modules/karaskel.lua/>karaskel.lua</a> split karaoke lines more
 sensibly into syllable structures, see the example.</p><p>This macro modifies all selected lines in the grid, re-writing all tag
-blocks in them.</p><p>{::template name=&ldquo;examplebox&rdquo;}
-Original line:</p><pre><code>{\r\frz90\k80}Test {\r\fry180\k60}me
+blocks in them.</p><div class=card><strong class=card-header>Example</strong><div class=card-body><p>Original line:</p><pre><code>{\r\frz90\k80}Test {\r\fry180\k60}me
 </code></pre><p>Karaskel creates these syllable structures:</p><ul><li>0 = {\r\frz90}</li><li>1 = Test {\r\fry180}</li><li>2 = me</li></ul><p>After running <em>Clean Tags</em> on the line:</p><pre><code>{\k80\r\frz90}Test {\k60\r\fry180}me
 </code></pre><p>Now karaskel creates these syllable structures:</p><ul><li>0 =</li><li>1 = {\r\frz90}Test</li><li>2 = {\r\fry180}me</li></ul><p>The cleaned up version is generally what you&rsquo;d want since it places the
-override tags inside the syllables they affect.
-{:/}</p><h2 id=add-edgeblur>Add Edgeblur<a href=#add-edgeblur class=anchor aria-hidden=true>#</a></h2><p>Add <a href=https://aeg-dev.github.io/AegiSite/docs/3.2/ass_tags/#bluredges><code>\be1</code></a> to all selected lines. Lightly blurring the
+override tags inside the syllables they affect.</p></div></div><h2 id=add-edgeblur>Add Edgeblur<a href=#add-edgeblur class=anchor aria-hidden=true>#</a></h2><p>Add <a href=https://aeg-dev.github.io/AegiSite/docs/3.2/ass_tags/#bluredges><code>\be1</code></a> to all selected lines. Lightly blurring the
 edges of all dialogue lines can noticeably improve compressibility when
 <a href=https://aeg-dev.github.io/AegiSite/docs/3.2/attaching_subtitles_to_video/>hardsubbing</a> (especially when using older
 codecs such as XviD), but edgeblur cannot be set in the style due to format
