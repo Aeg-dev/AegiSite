@@ -1,0 +1,184 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=preload as=font href=https://aeg-dev.github.io/AegiSite/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=https://aeg-dev.github.io/AegiSite/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><link rel=stylesheet href=https://aeg-dev.github.io/AegiSite/main.28da7785947fa33ddcae6925e18b0a958823da68373369ac541f243d23e67f9ef937586e39bd98fe8b413447a20c7dd3945aba78c6be93ba1398ec62d58d480c.css integrity="sha512-KNp3hZR/oz3crmkl4YsKlYgj2mg3M2msVB8kPSPmf575N1huOb2Y/otBNEeiDH3TlFq6eMa+k7oTmOxi1Y1IDA==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>- Aegisub</title><meta name=description content="Aegisub is a free, cross-platform open source tool for creating and modifying subtitles. Aegisub makes it quick and easy to time subtitles to audio, and features many powerful tools for styling them, including a built-in real-time video preview."><link rel=canonical href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/automation/lua/modules/re/><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="/doks.png"><meta name=twitter:title content><meta name=twitter:description content="The re module is a wrapper around boost::regex, intended as a full replacement for Lua&rsquo;s built in regular expressions. It has two main advantages over Lua&rsquo;s:
+ Full Unicode support. Lua regular expressions operate on bytes rather than characters, which frequently causes problems with multibyte characters. A more powerful and flexible syntax. Properly speaking, Lua does not support regular expressions; rather it has a basic pattern matching language that supports a small subset of what can be done with regular expressions."><meta name=twitter:site content="@henkverlinde"><meta name=twitter:creator content="@henkverlinde"><meta property="og:title" content><meta property="og:description" content="The re module is a wrapper around boost::regex, intended as a full replacement for Lua&rsquo;s built in regular expressions. It has two main advantages over Lua&rsquo;s:
+ Full Unicode support. Lua regular expressions operate on bytes rather than characters, which frequently causes problems with multibyte characters. A more powerful and flexible syntax. Properly speaking, Lua does not support regular expressions; rather it has a basic pattern matching language that supports a small subset of what can be done with regular expressions."><meta property="og:type" content="article"><meta property="og:url" content="/zh-cn/docs/3.2/automation/lua/modules/re/"><meta property="og:image" content="/zh-cn/doks.png"><meta property="og:site_name" content="Aegisub"><meta property="article:publisher" content="https://www.facebook.com/verlinde.henk"><meta property="article:author" content="https://www.facebook.com/verlinde.henk"><meta property="og:locale" content="en_US"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/aeg-dev.github.io\/AegiSite\/"},{"@type":"ListItem","position":3,"name":"Zh Cn","item":"https:\/\/aeg-dev.github.io\/AegiSite\/\/zh-cn\/"},{"@type":"ListItem","position":4,"name":"Docs","item":"https:\/\/aeg-dev.github.io\/AegiSite\/\/zh-cn\/docs\/"},{"@type":"ListItem","position":5,"name":"3.2","item":"https:\/\/aeg-dev.github.io\/AegiSite\/\/zh-cn\/docs\/3.2\/"},{"@type":"ListItem","position":6,"name":"Automation","item":"https:\/\/aeg-dev.github.io\/AegiSite\/\/zh-cn\/docs\/3.2\/automation\/"},{"@type":"ListItem","position":7,"name":"Lua","item":"https:\/\/aeg-dev.github.io\/AegiSite\/\/zh-cn\/docs\/3.2\/automation\/lua\/"},{"@type":"ListItem","position":8,"name":"Modules","item":"https:\/\/aeg-dev.github.io\/AegiSite\/\/zh-cn\/docs\/3.2\/automation\/lua\/modules\/"},{"@type":"ListItem","position":9,"name":"Re","item":"https:\/\/aeg-dev.github.io\/AegiSite\/\/zh-cn\/docs\/3.2\/automation\/lua\/modules\/re\/"}]}</script><meta name=theme-color content="#fff"><link rel=apple-touch-icon sizes=180x180 href=https://aeg-dev.github.io/AegiSite/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://aeg-dev.github.io/AegiSite/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://aeg-dev.github.io/AegiSite/favicon-16x16.png><link rel=manifest href=https://aeg-dev.github.io/AegiSite/site.webmanifest></head><body class="docs single"><div class="header-bar fixed-top"></div><header class="navbar fixed-top navbar-expand-md navbar-light"><div class=container><input class="menu-btn order-0" type=checkbox id=menu-btn>
+<label class="menu-icon d-md-none" for=menu-btn><span class=navicon></span></label><a class="navbar-brand order-1 order-md-0 me-auto" href=https://aeg-dev.github.io/AegiSite/zh-cn/>Aegisub</a><div class="order-1 order-md-3"><div class=input-group><select class=custom-select id=inputGroupSelect-language-switching onchange="location=this.value"><option id=en value=https://aeg-dev.github.io/AegiSite/docs/3.2/automation/lua/modules/re/>English</option><option id=zh-cn value=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/automation/lua/modules/re/ selected>简体中文</option></select></div></div><button id=mode class="btn btn-link order-2 order-md-4" type=button aria-label="Toggle mode">
+<span class=toggle-dark><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span><span class=toggle-light><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span></button><ul class="navbar-nav social-nav order-3 order-md-5"><li class=nav-item><a class=nav-link href=https://github.com/Aegisub/Aegisub><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg><span class="ms-2 visually-hidden">GitHub</span></a></li></ul><div class="collapse navbar-collapse order-4 order-md-1"><ul class="navbar-nav main-nav me-auto order-5 order-md-2 text-nowrap"><li class=nav-item><a class=nav-link href=https://aeg-dev.github.io/AegiSite/zh-cn/downloads/main/>下载</a></li><li class=nav-item><a class=nav-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/>文档</a></li><li class=nav-item><a class=nav-link href=https://github.com/Aegisub/Aegisub/issues>Bug 追踪</a></li><li class=nav-item><a class=nav-link href=https://aeg-dev.github.io/AegiSite/zh-cn/blog/>Blog</a></li><li class=nav-item><a class=nav-link href=http://blog.aegisub.org/>旧新闻</a></li></ul><div class="break order-6 d-md-none"></div><form class="navbar-form flex-grow-1 order-7 order-md-3"><input id=userinput class="form-control is-search" type=search placeholder="Search docs..." aria-label="Search docs..." autocomplete=off><div id=suggestions class="shadow bg-white rounded"></div></form></div></div></header><div class="wrap container-fluid" role=document><div class=content><div class="row flex-xl-nowrap"><div class="col-lg-5 col-xl-4 docs-sidebar"><nav class=docs-links aria-label="Main navigation"><h3>Navigation</h3><ul class=list-unstyled><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/main_page/>Main Page</a></li></ul><h3>Introduction</h3><ul class=list-unstyled><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/about/>What is Aegisub?</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/highlights/>Highlights</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/credits/>Credits</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/support/>Support Aegisub</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/faq/>FAQ</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/tutorials/>Tutorials</a></li></ul><h3>Working with Subtitles</h3><ul class=list-unstyled><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/editing_subtitles/>Editing Subtitles</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/exporting/>Exporting Subtitles</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/attaching_subtitles_to_video/>Applying Subtitles</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/spell_checker/>Spell Checker</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/translation_assistant/>Translation Assistant</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/paste_over/>Paste Over</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/select_lines/>Select Lines</a></li></ul><h3>Typesetting</h3><ul class=list-unstyled><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/typesetting/>Typesetting Introduction</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/video/>Working with Video</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/styles/>Editing styles</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/visual_typesetting/>Visual Typesetting</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/ass_tags/>ASS Override Tags</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/colour_picker/>Colour Picker</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/styling_assistant/>Styling Assistant</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/resolution_resampler/>Resolution Resampler</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/fonts_collector/>Fonts Collector</a></li></ul><h3>Timing</h3><ul class=list-unstyled><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/audio/>Working with Audio</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/timing/>Timing subtitles to audio</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/shift_times/>Shift times</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/timing_post-processor/>Timing Post-Processor</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/kanji_timer/>Kanji Timer</a></li></ul><h3>Automation</h3><ul class=list-unstyled><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/automation/>Overview</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/automation/karaoke_templater/>Karaoke Templater</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/automation/lua/>Lua Reference</a></li></ul><h3>Miscellaneous</h3><ul class=list-unstyled><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/options/>Aegisub Options</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/properties/>Script Properties</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/attachment_manager/>Attachment Manager</a></li><li><a class=docs-link href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/commands/>Commands</a></li></ul></nav></div><nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation"><div class=page-links><h3>On this page</h3><nav id=TableOfContents><ul><li><a href=#usage>Usage</a><ul><li><a href=#match-tables>Match Tables</a></li><li><a href=#flags>Flags</a></li><li><a href=#recompile>re.compile</a></li><li><a href=#resplit>re.split</a></li><li><a href=#regsplit>re.gsplit</a></li><li><a href=#refind>re.find</a></li><li><a href=#regfind>re.gfind</a></li><li><a href=#rematch>re.match</a></li><li><a href=#regmatch>re.gmatch</a></li><li><a href=#resub>re.sub</a></li></ul></li></ul></nav></div></nav><main class="docs-content col-lg-11 col-xl-9 mx-xl-auto"><h1></h1><p class=lead></p><p>The <code>re</code> module is a wrapper around boost::regex, intended as a full
+replacement for Lua&rsquo;s built in regular expressions. It has two main advantages
+over Lua&rsquo;s:</p><ol><li>Full Unicode support. Lua regular expressions operate on bytes rather than
+characters, which frequently causes problems with multibyte characters.</li><li>A more powerful and flexible syntax. Properly speaking, Lua does not support
+regular expressions; rather it has a basic pattern matching language that
+supports a small subset of what can be done with regular expressions.
+boost::regex, on the other hand, supports perl-compatible regular
+expressions.</li></ol><h2 id=usage>Usage<a href=#usage class=anchor aria-hidden=true>#</a></h2><p>Import this module with <code>re = require 'aegisub.re'</code>{:.language-lua}.</p><p>See <a href=http://www.boost.org/doc/libs/1_53_0/libs/regex/doc/html/boost_regex/syntax/perl_syntax.html>boost.regex&rsquo;s
+documentation</a>
+for information about the regular expression syntax. In general any resources
+on the web that refer to Perl regular expressions or PCRE will apply to
+this module&rsquo;s regular expressions.</p><h3 id=match-tables>Match Tables<a href=#match-tables class=anchor aria-hidden=true>#</a></h3><p>Several of the functions below return Match Tables, which are tables containing
+the following fields:</p><dl><dt><strong><code>str</code></strong> (<code>string</code>)</dt><dd>The text matched by a pattern or capturing expression</dd><dt><strong><code>first</code></strong> (<code>number</code>)</dt><dd>The start index of <code>str</code> in the original string which had a regular
+expression applied to it. Note that this index is one-based and is in bytes,
+rather than characters, to match Lua&rsquo;s string indexing.</dd><dt><strong><code>last</code></strong> (<code>number</code>)</dt><dd>The end index of <code>str</code> in the original string which had a regular expression
+applied to it. Note that this index is one-based, inclusive, and is in bytes,
+rather than characters, to match Lua&rsquo;s string indexing.</dd></dl><p>{::template name=&ldquo;luabox&rdquo;}</p><blockquote><blockquote><blockquote><p>re.match(&ldquo;b&rdquo;, &ldquo;abc&rdquo;)
+{
+{
+[&ldquo;str&rdquo;] = &ldquo;b&rdquo;,
+[&ldquo;first&rdquo;] = 2,
+[&ldquo;last&rdquo;] = 2
+}
+}
+{:/}</p></blockquote></blockquote></blockquote><h3 id=flags>Flags<a href=#flags class=anchor aria-hidden=true>#</a></h3><p>The following flags may be passed to all of the static functions (including
+<code>re.compile</code>). Flags must come after all supplied non-flag arguments, but
+optional arguments can be skipped.</p><dl><dt>re.ICASE</dt><dd>Ignore case when matching.</dd><dt>re.NOSUB:</dt><dd>Don&rsquo;t set backreferences and capture groups. Can improve performance when
+they aren&rsquo;t needed.</dd><dt>re.NEWLINE_ALT:</dt><dd>Treat newline characters as the alternation operator (|).</dd><dt>re.NO_MOD_M:</dt><dd>^ and $ only match the beginning and end of the string rather than newlines.</dd><dt>re.MOD_S:</dt><dd>Treat newlines as normal characters, matched by &lsquo;.&rsquo;.</dd><dt>re.MOD_X:</dt><dd>Ignore unescaped whitespace in the expression, making it possible to write
+regular expressions that <em>aren&rsquo;t</em> write-only.</dd><dt>re.NO_EMPTY_SUBEXPRESSION:</dt><dd>Don&rsquo;t match empty expressions/alternatives.</dd></dl><p>{::template name=&ldquo;luabox&rdquo;}</p><blockquote><blockquote><blockquote><p>re.match(&ldquo;a&rdquo;, &ldquo;A&rdquo;)
+nil
+re.match(&ldquo;a&rdquo;, &ldquo;A&rdquo;, re.ICASE, re.NOSUB)
+{
+{
+[&ldquo;str&rdquo;] = &ldquo;A&rdquo;,
+[&ldquo;first&rdquo;] = 1,
+[&ldquo;last&rdquo;] = 1
+}
+}
+{:/}</p></blockquote></blockquote></blockquote><h3 id=recompile>re.compile<a href=#recompile class=anchor aria-hidden=true>#</a></h3><p>Synopsis: <code>expr = re.compile(pattern, [FLAGS])</code>{:.language-lua}</p><p>Compile a regular expression. Reusing a compiled regular expression is faster
+than recompiling it each time it is used, and is usually more readable as well.</p><dl><dt><strong><code>@pattern</code></strong> (<code>string</code>)</dt><dd>Regular expression to compile.</dd><dt><strong><code>expr</code></strong> (<code>table</code>)</dt><dd>A table with all of the functions listed below, except without the pattern
+and flags arguments.</dd></dl><p>{::template name=&ldquo;luabox&rdquo;}</p><blockquote><blockquote><blockquote><p>expr = re.compile(&ldquo;a&rdquo;)
+expr:split(&ldquo;banana&rdquo;)
+{
+&ldquo;b&rdquo;,
+&ldquo;n&rdquo;,
+&ldquo;n&rdquo;
+}
+{:/}</p></blockquote></blockquote></blockquote><h3 id=resplit>re.split<a href=#resplit class=anchor aria-hidden=true>#</a></h3><p>Synopsis: <code>chunks = re.split(str, pattern, skip_empty=false, max_splits=0)</code>{:.language-lua}</p><p>Split the string at each of the occurrences of <code>pattern</code>.</p><dl><dt><strong><code>@str</code></strong> (<code>string</code>)</dt><dd>String to split.</dd><dt><strong><code>@pattern</code></strong> (<code>string</code>)</dt><dd>Regular expression to split the string on. Capturing groups in the pattern
+are ignored.</dd><dt><strong><code>@skip_empty</code></strong> (<code>boolean</code>)</dt><dd>Do not include zero-length chunks in the results.</dd><dt><strong><code>@max_splits</code></strong> (<code>number</code>)</dt><dd>If greater than zero, the maximum numbers of times to split the string (i.e.
+<code>#chunks</code> will be at most <code>max_splits + 1</code>).</dd><dt><strong><code>chunks</code></strong> (<code>table</code>)</dt><dd>A table containing each of the sections of <code>str</code> between the matches of
+<code>pattern</code>.</dd></dl><p>{::template name=&ldquo;luabox&rdquo;}</p><blockquote><blockquote><blockquote><p>re.split(",", &ldquo;a,,b,c&rdquo;)
+{
+&ldquo;a&rdquo;,
+&ldquo;&rdquo;,
+&ldquo;b&rdquo;,
+&ldquo;c&rdquo;
+}
+{:/}
+{::template name=&ldquo;luabox&rdquo;}
+re.split(",", &ldquo;a,,b,c&rdquo;, true)
+{
+&ldquo;a&rdquo;,
+&ldquo;b&rdquo;,
+&ldquo;c&rdquo;
+}
+{:/}
+{::template name=&ldquo;luabox&rdquo;}
+re.split(",", &ldquo;a,,b,c&rdquo;, false, 1)
+{
+&ldquo;a&rdquo;,
+&ldquo;,b,c&rdquo;,
+}
+{:/}</p></blockquote></blockquote></blockquote><h3 id=regsplit>re.gsplit<a href=#regsplit class=anchor aria-hidden=true>#</a></h3><p>Synopsis: <code>iter = re.gsplit(str, pattern, skip_empty=false, max_splits=0)</code>{:.language-lua}</p><p>Iterator version of re.split.</p><dl><dt><strong><code>@str</code></strong> (<code>string</code>)</dt><dd>String to split.</dd><dt><strong><code>@pattern</code></strong> (<code>string</code>)</dt><dd>Regular expression to split the string on. Capturing groups in the pattern
+are ignored.</dd><dt><strong><code>@skip_empty</code></strong> (<code>boolean</code>)</dt><dd>Do not include zero-length chunks in the results.</dd><dt><strong><code>@max_splits</code></strong> (<code>number</code>)</dt><dd>If greater than zero, the maximum numbers of times to split the string (i.e.
+<code>#chunks</code> will be at most <code>max_splits + 1</code>).</dd><dt><strong><code>iter</code></strong> (<code>iterator over strings</code>)</dt><dd>An iterator over each of the sections of <code>str</code> between the matches of
+<code>pattern</code>.</dd></dl><p>{::template name=&ldquo;luabox&rdquo;}</p><blockquote><blockquote><blockquote><p>for str in re.gsplit(",", &ldquo;a,,b,c&rdquo;) do
+print str
+end
+a</p></blockquote></blockquote></blockquote><p>b
+c
+{:/}
+{::template name=&ldquo;luabox&rdquo;}</p><blockquote><blockquote><blockquote><p>for str in re.gsplit(",", &ldquo;a,,b,c&rdquo;, true) do
+print str
+end
+a
+b
+c
+{:/}
+{::template name=&ldquo;luabox&rdquo;}
+for str in re.gsplit(",", &ldquo;a,,b,c&rdquo;, false, 1) do
+print str
+end
+a
+,b,c
+{:/}</p></blockquote></blockquote></blockquote><h3 id=refind>re.find<a href=#refind class=anchor aria-hidden=true>#</a></h3><p>Synopsis: <code>matches = re.find(str, pattern)</code>{:.language-lua}</p><p>Find all non-overlapping substrings of <code>str</code> which match <code>pattern</code>.</p><dl><dt><strong><code>@str</code></strong> (<code>string</code>)</dt><dd>String to search for the pattern in.</dd><dt><strong><code>@pattern</code></strong> (<code>string</code>)</dt><dd>Pattern to search for. Capturing groups in the pattern are ignored.</dd><dt><strong><code>matches</code></strong> (<code>table</code> or <code>nil</code>)</dt><dd>A table of <a href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/automation/lua/modules/re/#match-tables>Match Tables</a> for all matches, or <code>nil</code> if
+there were none.</dd></dl><p>{::template name=&ldquo;luabox&rdquo;}</p><blockquote><blockquote><blockquote><p>re.find(".", &ldquo;☃☃&rdquo;)
+{
+{
+[&ldquo;str&rdquo;] = &ldquo;☃&rdquo;,
+[&ldquo;first&rdquo;] = 1,
+[&ldquo;last&rdquo;] = 3
+},
+{
+[&ldquo;str&rdquo;] = &ldquo;☃&rdquo;,
+[&ldquo;first&rdquo;] = 4,
+[&ldquo;last&rdquo;] = 6
+}
+}
+{:/}
+{::template name=&ldquo;luabox&rdquo;}
+function contains_an_a(str)
+if re.find(&ldquo;a&rdquo;, str)
+print &ldquo;Has an a&rdquo;
+else
+print &ldquo;Doesn&rsquo;t have an a&rdquo;
+end
+end
+contains_an_a(&ldquo;abc&rdquo;)
+Has an a
+contains_an_a(&ldquo;def&rdquo;)
+Doesn&rsquo;t have an a
+{:/}</p></blockquote></blockquote></blockquote><h3 id=regfind>re.gfind<a href=#regfind class=anchor aria-hidden=true>#</a></h3><p>Synopsis: <code>iter = re.gfind(str, pattern)</code>{:.language-lua}</p><p>Iterate over all non-overlapping substrings of <code>str</code> which match <code>pattern</code>.</p><dl><dt><strong><code>@str</code></strong> (<code>string</code>)</dt><dd>String to search for the pattern in.</dd><dt><strong><code>@pattern</code></strong> (<code>string</code>)</dt><dd>Pattern to search for. Capturing groups in the pattern are ignored.</dd><dt><strong><code>iter</code></strong> (<code>iterator over string, number, number</code>)</dt><dd>An iterator which produces three values at each step: a matched string, the
+started index of the match in the source string, and the inclusive end index of
+the match in the source string.</dd></dl><p>{::template name=&ldquo;luabox&rdquo;}</p><blockquote><blockquote><blockquote><p>for str, start_idx, end_idx in re.gfind(".", &ldquo;☃☃&rdquo;) do
+print string.format("%d-%d: %s", start_idx, end_idx, str)
+end
+1-3: ☃
+4-6: ☃
+{:/}</p></blockquote></blockquote></blockquote><h3 id=rematch>re.match<a href=#rematch class=anchor aria-hidden=true>#</a></h3><p>Synopsis: <code>matches = re.match(str, pattern)</code>{:.language-lua}</p><p>Match a pattern against a string. This differs from <code>find</code> in that <code>find</code>
+returns all matches and does not capture subgroups, while this returns only a
+single match along with the captured subgroups.</p><dl><dt><strong><code>@str</code></strong> (<code>string</code>)</dt><dd>String to search for the pattern in.</dd><dt><strong><code>@pattern</code></strong> (<code>string</code>)</dt><dd>Pattern to search for.</dd><dt><strong><code>matches</code></strong> (<code>table</code> or <code>nil</code>)</dt><dd><code>nil</code> if the pattern did not match the string. Otherwise, a table containing
+a <a href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/automation/lua/modules/re/#match-tables>Match Table</a> for the full match, followed by a <a href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/automation/lua/modules/re/#match-tables>Match Table</a> for each capturing subexpression in the pattern (if
+any).</dd></dl><p>{::template name=&ldquo;luabox&rdquo;}</p><blockquote><blockquote><blockquote><p>re.match("(\d+) (\d+) (\d+)", &ldquo;{250 1173 380}Help!")
+{
+{
+[&ldquo;str&rdquo;] = &ldquo;250 1173 380&rdquo;,
+[&ldquo;first&rdquo;] = 2,
+[&ldquo;last&rdquo;] = 13
+},
+{
+[&ldquo;str&rdquo;] = &ldquo;250&rdquo;,
+[&ldquo;first&rdquo;] = 2,
+[&ldquo;last&rdquo;] = 4
+},
+{
+[&ldquo;str&rdquo;] = &ldquo;1173&rdquo;,
+[&ldquo;first&rdquo;] = 6,
+[&ldquo;last&rdquo;] = 9,
+},
+{
+[&ldquo;str&rdquo;] = &ldquo;380&rdquo;
+[&ldquo;first&rdquo;] = 11,
+[&ldquo;last&rdquo;] = 13
+}
+}
+{:/}</p></blockquote></blockquote></blockquote><h3 id=regmatch>re.gmatch<a href=#regmatch class=anchor aria-hidden=true>#</a></h3><p>Synopsis: <code>iter = re.gmatch(str, pattern)</code>{:.language-lua}</p><p>Iterator version of <a href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/automation/lua/modules/re/#re.match><code>re.match</code></a>.</p><dl><dt><strong><code>@str</code></strong> (<code>string</code>)</dt><dd>String to search for the pattern in.</dd><dt><strong><code>@pattern</code></strong> (<code>string</code>)</dt><dd>Pattern to search for.</dd><dt><strong><code>matches</code></strong> (<code>iterator over table</code>)</dt><dd>An iterator which returns a table containing a <a href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/automation/lua/modules/re/#match-tables>Match Table</a> for the full match (if it matched), followed by a
+<a href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/automation/lua/modules/re/#match-tables>Match Table</a> for each capturing subexpression in the pattern
+(if any).</dd></dl><h3 id=resub>re.sub<a href=#resub class=anchor aria-hidden=true>#</a></h3><p>Synopsis: <code>out_str, rep_count = re.sub(str, replace, pattern, max_count=0)</code>{:.language-lua}</p><p>Replace each occurrence of <code>pattern</code> in <code>str</code> with <code>replace</code>.</p><dl><dt><strong><code>@pattern</code></strong> (<code>string</code>)</dt><dd>Pattern to search for.</dd><dt><strong><code>@replace</code></strong> (<code>string</code> or <code>function</code>)</dt><dd>Replacement for matches. This may be either a string which is inserted, or a
+function which is called for each match.<p>If <code>replace</code> is a string, it may contain references to the matches. <code>&</code> and
+<code>\0</code> are replaced with the full match, and <code>\&lt;number></code> is replaced with the
+appropriate captured subexpression.</p><p>If <code>replace</code> is a function, it is called for either the entire match (if
+there are no capturing subexpressions), or for each captured subexpression.
+It is passed the match string, start index of the match, and end index of
+the match. If it returns a string, the match is replaced with the return
+value. If it returns anything else, then the source string is left
+unchanged.</p></dd><dt><strong><code>@max_count</code></strong> (<code>number</code>)</dt><dd>If greater than zero, the maximum number of replacements to make.</dd><dt><strong><code>out_str</code></strong> (<code>string</code>)</dt><dd>The input string, with replacements applied.</dd><dt><strong><code>rep_count</code></strong> (<code>number</code>)</dt><dd>The number of replacements that were made.</dd></dl><p>{::template name=&ldquo;examplebox&rdquo;}
+Replace all instances of \k with \kf:</p><pre><code class=language-lua>&gt;&gt;&gt; re.sub(&quot;{\\k10}a{\\k15}b{\\k30}c&quot;, &quot;\\\\k&quot;, &quot;\\kf&quot;)
+{\kf10}a{\kf15}b{\kf30}c
+</code></pre><p>{:/}
+{::template name=&ldquo;examplebox&rdquo;}
+Replace all instances of \k and \K with \kf:</p><pre><code class=language-lua>&gt;&gt;&gt; re.sub(&quot;{\\K10}a{\\K15}b{\\k30}c&quot;, &quot;\\\\k&quot;, &quot;\\kf&quot;, re.ICASE)
+{\kf10}a{\kf15}b{\kf30}c
+</code></pre><p>{:/}
+{::template name=&ldquo;examplebox&rdquo;}
+Add one to each \k duration:</p><pre><code class=language-lua>function add_one(str)
+    return tostring(tonumber(str) + 1)
+end
+&gt;&gt;&gt; re.sub(&quot;{\\k10}a{\\k15}b{\\k30}c&quot;, &quot;\\\\k(\[[:digit:]]+)&quot;, add_one)
+{\k11}a{\k16}b{\k31}c
+</code></pre><p>{:/}</p><p>{::template name=&ldquo;automation_navbox&rdquo; /}</p><div class="docs-navigation d-flex justify-content-between"><a href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/automation/lua/modules/karaskel.lua/><div class="card my-1"><div class="card-body py-2">&larr;</div></div></a><a class=ms-auto href=https://aeg-dev.github.io/AegiSite/zh-cn/docs/3.2/automation/lua/modules/unicode/><div class="card my-1"><div class="card-body py-2">&rarr;</div></div></a></div></main></div></div></div><footer class="footer text-muted"><div class=container><div class=row><div class="col-lg-8 order-last order-lg-first"><ul class=list-inline><li class=list-inline-item>Powered by <a href=https://www.networkredux.com/>NetworkRedux</a>, <a href=https://gohugo.io/>Hugo</a>, and <a href=https://getdoks.org/>Doks</a></li></ul></div><div class="col-lg-8 order-first order-lg-last text-lg-end"><ul class=list-inline><li class=list-inline-item><a href=https://aeg-dev.github.io/AegiSite/zh-cn/privacy-policy/>Privacy</a></li></ul></div></div></div></footer><script src=https://aeg-dev.github.io/AegiSite/js/highlight.min.23f16da133548e29aa8de3077755353b92ab613aeb6543a7f26b0e897536bde8c6fe45e68ef6d13d6de184f6b7199e781aaebd156dbcaacd50e849b8b2ec0991.js integrity="sha512-I/FtoTNUjimqjeMHd1U1O5KrYTrrZUOn8msOiXU2vejG/kXmjvbRPW3hhPa3GZ54Gq69FW28qs1Q6Em4suwJkQ==" crossorigin=anonymous defer></script><script src=https://aeg-dev.github.io/AegiSite/main.min.cb1cfa565384689404329cbf8ad4a175b59ac6421a528ad947882d8242fc7b62b773cd5967a10349256154f6a67bcdeeb3da0729191ddd4f5623442999e53004.js integrity="sha512-yxz6VlOEaJQEMpy/itShdbWaxkIaUorZR4gtgkL8e2K3c81ZZ6EDSSVhVPame83us9oHKRkd3U9WI0QpmeUwBA==" crossorigin=anonymous defer></script><script src=https://aeg-dev.github.io/AegiSite/index.min.c447bc80140be4ce47a946fa86dbf4ace9776e64f73897eb593481305fae20a54f80bff8d122c614a4264b9b63c63d267558a9384851cebbb685750f2c3670f4.js integrity="sha512-xEe8gBQL5M5HqUb6htv0rOl3bmT3OJfrWTSBMF+uIKVPgL/40SLGFKQmS5tjxj0mdVipOEhRzru2hXUPLDZw9A==" crossorigin=anonymous defer></script></body></html>
