@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aeg-dev.github.io/AegiSite/sitemap.xml
+Sitemap: https://aegisub.github.io/aegisite/sitemap.xml
