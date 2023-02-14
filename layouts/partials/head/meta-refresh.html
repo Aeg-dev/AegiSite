@@ -1,7 +1,12 @@
 <!-- meta refresh -->
+{{ $sub_url := "" }}
 
-{{ if .IsHome -}}
-  <meta http-equiv="refresh" content="0; url={{ .Site.Params.main_site_url }}">
-{{ else -}}
+{{ if .IsHome }}
+    {{ $sub_url = "" }}
+{{ else if in .RelPermalink "docs/3.2" }}
+    {{ $sub_url = replace .RelPermalink "3.2/" "latest/" }}
+{{ else }}
+    {{ $sub_url = .RelPermalink }}
+{{ end }}
 
-{{ end -}}
+<meta http-equiv="refresh" content="0; url={{ .Site.Params.main_site_url }}{{ $sub_url }}">
