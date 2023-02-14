@@ -12,11 +12,8 @@
 
 {{ if .IsHome -}}
   <title>{{ .Site.Params.title }} {{ .Site.Params.titleSeparator }} {{ .Site.Params.titleAddition }}</title>
-  <!-- meta refresh -->
-  <meta http-equiv="refresh" content="0; url={{ .Site.Params.main_site_url }}">
 {{ else -}}
   <title>{{ .Title }} {{ .Site.Params.titleSeparator }} {{ .Site.Params.title }}</title>
-  <meta http-equiv="refresh" content="0; url={{ .Site.Params.doc_url }}{{ .RelPermalink }}">
 {{ end -}}
 
 {{ with .Description -}}
