@@ -76,3 +76,7 @@ module:
       target: assets/js/vendor/flexsearch
     - source: node_modules/katex
       target: assets/js/vendor/katex
+
+params:
+  main_site_url: https://aegisub.org/
+  doc_url: https://aegisite.vercel.app/
